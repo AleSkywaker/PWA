@@ -19,9 +19,9 @@ self.addEventListener("fetch", event => {
         "Content-Type": "text/css"
       }
     );
+    event.respondWith(respuesta);
   }
 
-  event.respondWith(fetch(event.request));
 
   // console.log(event);
 });
