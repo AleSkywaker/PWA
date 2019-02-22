@@ -6,7 +6,8 @@ self.addEventListener('install', e=>{
                 '/index.html',
                 '/css/styles.css',
                 '/img/main.jpg',
-                ''
+                'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+                '/js/app.js'
             ])
         }
     )
