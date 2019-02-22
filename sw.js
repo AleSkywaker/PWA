@@ -3,7 +3,10 @@ self.addEventListener('install', e=>{
         cache =>{
             cache.addAll([
                 '/',
-                'index.html'
+                '/index.html',
+                '/css/styles.css',
+                '/img/main.jpg',
+                ''
             ])
         }
     )
