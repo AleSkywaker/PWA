@@ -11,3 +11,8 @@ self.addEventListener('install', (e) => {
 	});
 	e.waitUntill(cacheProm);
 });
+
+
+self.addEventListener('fetch', e=>{
+	// Cache Only
+})
