@@ -2,8 +2,6 @@
 //     console.log('Podemos usuarlo')
 // }
 
-if(navigator.serviceWorker){
-    
-
-    navigator.serviceWorker.register('/sw.js')
+if (navigator.serviceWorker) {
+	navigator.serviceWorker.register('/sw.js');
 }
