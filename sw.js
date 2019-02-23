@@ -1,6 +1,7 @@
 self.addEventListener('install', (e) => {
 	const cacheProm = caches.open('cache-V1').then((cache) => {
 		return cache.addAll([
+			'/',
 			'/index.html',
 			'/css/style.css',
 			'/img/main.jpg',
