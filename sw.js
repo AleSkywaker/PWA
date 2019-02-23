@@ -1,7 +1,7 @@
-self.addEventListener('install', (e) => {
-	const cacheProm = caches.open('cache-1').then((cache) => {
+self.addEventListener('install', e => {
+	const cacheProm = caches.open('cache-1')
+	.then( cache => {
 		return cache.addAll([
-			'/',
 			'/index.html',
 			'/css/styles.css',
 			'/img/main.jpg',
@@ -9,10 +9,10 @@ self.addEventListener('install', (e) => {
 			'/js/app.js'
 		]);
 	});
-	e.waitUntill(cacheProm);
+	e.waitUntil(cacheProm);
 });
 
-
-self.addEventListener('fetch', e=>{
+self.addEventListener('fetch', (e) => {
 	// Cache Only
-})
+	e.respondWith()
+});
