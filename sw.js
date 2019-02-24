@@ -11,7 +11,7 @@ self.addEventListener('install', (e) => {
 		return cache.add('https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css');
 	});
 
-	e.waitUntil(Promise.all(cacheProm, cacheInmu));
+	e.waitUntil(Promise.all([cacheProm, cacheInmu]));
 });
 
 self.addEventListener('fetch', (e) => {
