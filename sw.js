@@ -1,11 +1,11 @@
-const CACHE_NAME = 'cache-1';
+// const CACHE_NAME = 'cache-1';
 
 const CACHE_STATIC_NAME = 'static-v'
 const CACHE_DYNAMIC_NAME = 'dynamic-v'
 const CACHE_INMUTABLE_NAME = 'inmutable-v'
 
 self.addEventListener('install', (e) => {
-	const cacheProm = caches.open(CACHE_NAME).then((cache) => {
+	const cacheProm = caches.open(CACHE_STATIC_NAME).then((cache) => {
 		return cache.addAll([
 			'/',
 			'/index.html',
@@ -28,7 +28,7 @@ self.addEventListener('fetch', (e) => {
 		//Tengo que ir a la web
 		// console.log('No existe', e.request.url);
 		return fetch(e.request).then((newResp) => {
-			caches.open(CACHE_NAME).then(cache=>{
+			caches.open(CACHE_DYNAMIC_NAME).then(cache=>{
 			    cache.put(e.request, newResp)	
 			})
 			return newResp.clone();
