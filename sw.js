@@ -1,5 +1,9 @@
 const CACHE_NAME = 'cache-1';
 
+const CACHE_STATIC_NAME = 'static-v'
+const CACHE_DYNAMIC_NAME = 'dynamic-v'
+const CACHE_INMUTABLE_NAME = 'inmutable-v'
+
 self.addEventListener('install', (e) => {
 	const cacheProm = caches.open(CACHE_NAME).then((cache) => {
 		return cache.addAll([
