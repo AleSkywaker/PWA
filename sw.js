@@ -10,12 +10,15 @@ self.addEventListener('install', (e) => {
 			'/index.html',
 			'/css/style.css',
 			'/img/main.jpg',
-			'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
 			'/js/app.js'
 		]);
 	});
 
-	e.waitUntil(cacheProm);
+    const cacheInmu = caches.open(CACHE_INMUTABLE_NAME).then((cache)=>{
+		return cache.add('https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css')
+	})
+
+	e.waitUntil(cacheProm, cacheInmu);
 });
 
 self.addEventListener('fetch', (e) => {
