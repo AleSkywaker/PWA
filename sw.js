@@ -9,6 +9,11 @@ function limpiarCache(cacheName, numeroItems){
 		return cache.keys()
 			.then(keys=>{
 				console.log(keys)
+
+				if(keys.length > numeroItems){
+					cache.delete(keys[0])
+						.then(limpiarCache(cacheName, numeroItems))
+				}
 			})
 	})
 }
