@@ -43,7 +43,7 @@ self.addEventListener('fetch', (e) => {
 		return fetch(e.request).then((newResp) => {
 			caches.open(CACHE_DYNAMIC_NAME).then((cache) => {
 				cache.put(e.request, newResp);
-				limpiarCache(CACHE_DYNAMIC_NAME, 3)
+				limpiarCache(CACHE_DYNAMIC_NAME, 50)
 			});
 			return newResp.clone();
 		});
