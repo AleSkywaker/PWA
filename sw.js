@@ -32,13 +32,13 @@ self.addEventListener('install', (e) => {
 	e.waitUntil(Promise.all([cacheProm, cacheInmu]));
 });
 
-self.addEventListener('fetch', (e) => {
+self.addEventListener('fetch', e => {
     //4-Cache with Network update
     //util cuando el rendimiento es critico
     //los updates siempre estaran un paso atrás.
 	
+	e.respondWith();
 	});
-	e.respondWith(respuesta);
 
 	
 
