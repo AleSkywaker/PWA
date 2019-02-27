@@ -47,7 +47,7 @@ self.addEventListener('fetch', (e) => {
         
        caches.match(e.request).then(res =>{
            res ? resolve(res): falloUnaVez()
-       })
+       }).catch(falloUnaVez)
 
 
     })
