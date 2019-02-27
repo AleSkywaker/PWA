@@ -30,7 +30,7 @@ self.addEventListener('fetch', (e) => {
 	//4-Cache and network race
     
     
-	});
-
+    
 	e.respondWith(respuesta);
 });
+
