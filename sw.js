@@ -27,7 +27,7 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-	//4-Cache and network race
+	//5-Cache and network race
     
     
     
