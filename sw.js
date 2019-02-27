@@ -16,7 +16,7 @@ function limpiarCache(cacheName, numeroItems) {
 
 self.addEventListener('install', (e) => {
 	const cacheProm = caches.open(CACHE_STATIC_NAME).then((cache) => {
-		return cache.addAll([ '/', '/index.html', '/css/style.css', '/img/main.jpg', '/js/app.js' ]);
+		return cache.addAll([ '/', '/index.html', '/css/style.css', '/img/main.jpg', '/js/app.js', '/img/no-img.jpg' ]);
 	});
 
 	const cacheInmu = caches.open(CACHE_INMUTABLE_NAME).then((cache) => {
@@ -28,31 +28,35 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('fetch', (e) => {
 	//5-Cache and network race
-    const respuesta = new Promise((resolve, reject)=>{
+	const respuesta = new Promise((resolve, reject) => {
+		let rechazada = false;
 
-        let rechazada = false;
+		const falloUnaVez = () => {
+			if (rechazada) {
+				if (/\.(png|jpg)$/i.test(e.request)) {
+                    
+					resolve(caches.match('/img/no-img.jpg'));
+				} else {
+					reject('No se encotró respuesta');
+				}
+			} else {
+				rechazada = true;
+			}
+		};
 
-        const falloUnaVez = () =>{
-            if(rechazada){
+		fetch(e.request)
+			.then((res) => {
+				res.ok ? resolve(res) : falloUnaVez();
+			})
+			.catch(falloUnaVez);
 
-            }else{
-                rechazada = true;
-            }
+		caches
+			.match(e.request)
+			.then((res) => {
+				res ? resolve(res) : falloUnaVez();
+			})
+			.catch(falloUnaVez);
+	});
 
-        }
-
-       fetch(e.request).then(res=>{
-           res.ok ? resolve(res): falloUnaVez()
-       }).catch(falloUnaVez)
-        
-       caches.match(e.request).then(res =>{
-           res ? resolve(res): falloUnaVez()
-       }).catch(falloUnaVez)
-
-
-    })
-    
-    
 	e.respondWith(respuesta);
 });
-
