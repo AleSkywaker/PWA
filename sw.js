@@ -27,18 +27,9 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-	//4-Cache with Network update
-	//util cuando el rendimiento es critico
-    //los updates siempre estaran un paso atrás.
+	//4-Cache and network race
     
-    if(e.request.url.includes('bootstrap')){
-        return e.respondWith(caches.match(e.request))
-    }
-	const respuesta = caches.open(CACHE_STATIC_NAME).then((cache) => {
-		fetch(e.request).then((newResp) => {
-			cache.put(e.request, newResp);
-		});
-		return cache.match(e.request);
+    
 	});
 
 	e.respondWith(respuesta);
