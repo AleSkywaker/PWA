@@ -29,7 +29,27 @@ self.addEventListener('install', (e) => {
 self.addEventListener('fetch', (e) => {
 	//5-Cache and network race
     const respuesta = new Promise((resolve, reject)=>{
+
+        let rechazada = false;
+
+        const falloUnaVez = () =>{
+            if(rechazada){
+
+            }else{
+                rechazada = true;
+            }
+
+        }
+
+       fetch(e.request).then(res=>{
+           res.ok ? resolve(res): falloUnaVez()
+       }).catch(falloUnaVez)
         
+       caches.match(e.request).then(res =>{
+           res ? resolve(res): falloUnaVez()
+       })
+
+
     })
     
     
