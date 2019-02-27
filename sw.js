@@ -28,7 +28,9 @@ self.addEventListener('install', (e) => {
 
 self.addEventListener('fetch', (e) => {
 	//5-Cache and network race
-    
+    const respuesta = new Promise((resolve, reject)=>{
+        
+    })
     
     
 	e.respondWith(respuesta);
