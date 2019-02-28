@@ -33,7 +33,7 @@ self.addEventListener('fetch', (e) => {
 
 		const falloUnaVez = () => {
 			if (rechazada) {
-				if (/\.(png|jpg)$/i.test(e.request)) {
+				if (/\.(png|jpg)$/i.test(e.request.url)) {
                     
 					resolve(caches.match('/img/no-img.jpg'));
 				} else {
